@@ -20,7 +20,9 @@ RUN cd node-v0.10.25 && \
 
 RUN cd / && \
     git clone https://github.com/zone117x/node-cryptonote-pool.git pool && \
-    cd pool
-#    npm update
+    cd pool && \
+    npm set registry http://r.cnpmjs.org/ && \
+    npm config set strict-ssl false && \
+    npm update
 
 WORKDIR /pool
