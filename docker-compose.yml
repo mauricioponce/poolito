@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  nice-pool:
+    container_name: nice-pool
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - "./app:/app"
+    command:
+      - '/bin/bash'
+    tty: true
+
+  nice-redis:
+    container_name: redis-pool
+    image: redis:latest
