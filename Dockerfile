@@ -25,4 +25,7 @@ RUN cd / && \
     npm config set strict-ssl false && \
     npm update
 
+COPY config.json /pool/config.json
+
 WORKDIR /pool
+#CMD ['node', 'init.js']
