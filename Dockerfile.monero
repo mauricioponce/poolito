@@ -1,0 +1,13 @@
+FROM ubuntu:16.04
+
+RUN apt-get update && \
+    apt-get upgrade && \
+    apt-get install -y wget bzip2
+
+RUN wget https://downloads.getmonero.org/cli/monero-linux-x64-v0.12.0.0.tar.bz2 && \
+    tar xf monero-linux-x64-v0.12.0.0.tar.bz2 && \
+    mv monero-v0.12.0.0 monero && \
+    rm monero-linux-x64-v0.12.0.0.tar.bz2 && \
+    apt-get autoremove
+
+WORKDIR monero

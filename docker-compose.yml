@@ -13,3 +13,17 @@ services:
   nice-redis:
     container_name: redis-pool
     image: redis:latest
+
+  nice-monero-wallet:
+    container_name: monero-wallet
+    build:
+      context: .
+      dockerfile: Dockerfile.monero
+    command: ['./monero-wallet-cli', '--testnet']
+
+  nice-monero-daemon:
+    container_name: monero-daemon
+    build:
+      context: .
+      dockerfile: Dockerfile.monero
+    command: ['./monerod', '--testnet']
