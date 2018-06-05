@@ -14,16 +14,25 @@ services:
     container_name: redis-pool
     image: redis:latest
 
-  nice-monero-wallet:
-    container_name: monero-wallet
-    build:
-      context: .
-      dockerfile: Dockerfile.monero
-    command: ['./monero-wallet-cli', '--testnet']
+#  nice-monero-wallet:
+#    container_name: monero-wallet
+#    build:
+#      context: .
+#      dockerfile: Dockerfile.monero
+#    command: ['./monero-wallet-cli', '--testnet']
 
-  nice-monero-daemon:
-    container_name: monero-daemon
+  nice-monero-node-1:
+    container_name: monero-node-1
     build:
       context: .
       dockerfile: Dockerfile.monero
+#/opt/monero/monerod --testnet  --no-igd --hide-my-port --testnet-data-dir ~/testnet/node --p2p-bind-ip 127.0.0.1 --log-level 0 --add-exclusive-node 127.0.0.1:38080 --add-exclusive-node 127.0.0.1:48080
+    command: ['./monerod', '--testnet']
+
+  nice-monero-node-2:
+    container_name: monero-node-2
+    build:
+      context: .
+      dockerfile: Dockerfile.monero
+#/opt/monero/monerod --testnet  --no-igd --hide-my-port --testnet-data-dir ~/testnet/node --p2p-bind-ip 127.0.0.1 --log-level 0 --add-exclusive-node 127.0.0.1:38080 --add-exclusive-node 127.0.0.1:48080
     command: ['./monerod', '--testnet']

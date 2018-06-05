@@ -112,7 +112,7 @@
     },
 
     "redis": {
-        "host": "redis-pool",
+        "host": "nice-redis",
         "port": 6379,
         "auth": null
     }
