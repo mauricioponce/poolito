@@ -4,7 +4,7 @@ services:
   nice-pool:
     container_name: nice-pool
     build:
-      context: .
+      context: ./docker
       dockerfile: Dockerfile.pool
     command:
       - '/bin/bash'
@@ -17,14 +17,14 @@ services:
 #  nice-monero-wallet:
 #    container_name: monero-wallet
 #    build:
-#      context: .
+#      context: ./docker
 #      dockerfile: Dockerfile.monero
 #    command: ['./monero-wallet-cli', '--testnet']
 
   nice-monero-node-1:
     container_name: monero-node-1
     build:
-      context: .
+      context: ./docker
       dockerfile: Dockerfile.monero
 #/opt/monero/monerod --testnet  --no-igd --hide-my-port --testnet-data-dir ~/testnet/node --p2p-bind-ip 127.0.0.1 --log-level 0 --add-exclusive-node 127.0.0.1:38080 --add-exclusive-node 127.0.0.1:48080
     command: ['./monerod', '--testnet']
@@ -32,7 +32,7 @@ services:
   nice-monero-node-2:
     container_name: monero-node-2
     build:
-      context: .
+      context: ./docker
       dockerfile: Dockerfile.monero
 #/opt/monero/monerod --testnet  --no-igd --hide-my-port --testnet-data-dir ~/testnet/node --p2p-bind-ip 127.0.0.1 --log-level 0 --add-exclusive-node 127.0.0.1:38080 --add-exclusive-node 127.0.0.1:48080
     command: ['./monerod', '--testnet']
