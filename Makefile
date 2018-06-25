@@ -19,13 +19,13 @@ CONTAINER_POOL_NAME=nice-pool -$(STAGE)-$(TAG)
 # Phony targets
 #-----------------------------------------------
 .SILENT :
-.PHONY: up stop ps logs clean c relaunch api-post build-images
+.PHONY: up stop ps logs clean c relaunch build-images
 
 #-----------------------------------------------
 # Containers
 #-----------------------------------------------
 up: ## Containers up!
-	$(PREFIX) docker-compose up -d --remove-orphans
+	$(PREFIX) docker-compose up -d
 
 stop: ## Containers down!
 	$(PREFIX) docker-compose stop
@@ -37,10 +37,10 @@ logs: ## Containers logs
 	$(PREFIX) docker-compose logs -f
 
 clean: ## remove containers
-	@docker rm $(CONTAINER_API_NAME) $(CONTAINER_NGINX_NAME)
+	@docker rm $(CONTAINER_POOL_NAME)
 
 c: ## execute a shell into api container
-	@docker exec -ti $(CONTAINER_API_NAME) /bin/bash
+	@docker exec -ti $(CONTAINER_POOL_NAME) /bin/bash
 
 relaunch: ## stop, clean, build-image up ps
 	$(MAKE) stop clean build-image up ps
@@ -48,5 +48,5 @@ relaunch: ## stop, clean, build-image up ps
 #-----------------------------------------------
 # Image
 #-----------------------------------------------
-build-image: ## Build image
+build-images: ## Build images
 	$(PREFIX) docker-compose build
