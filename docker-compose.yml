@@ -10,29 +10,30 @@ services:
       - '/bin/bash'
     tty: true
 
-  nice-redis:
-    container_name: redis-pool
-    image: redis:latest
+#  nice-redis:
+#    container_name: redis-pool
+#    image: redis:latest
 
-#  nice-monero-wallet:
-#    container_name: monero-wallet
-#    build:
-#      context: ./docker
-#      dockerfile: Dockerfile.monero
-#    command: ['./monero-wallet-cli', '--testnet']
-
-  nice-monero-node-1:
-    container_name: monero-node-1
+  nice-monero-mining-node:
+    container_name: monero-mining-node
     build:
       context: ./docker
       dockerfile: Dockerfile.monero
-#/opt/monero/monerod --testnet  --no-igd --hide-my-port --testnet-data-dir ~/testnet/node --p2p-bind-ip 127.0.0.1 --log-level 0 --add-exclusive-node 127.0.0.1:38080 --add-exclusive-node 127.0.0.1:48080
-    command: ['./monerod', '--testnet']
+    ports:
+      - 18082:18082
+      - 28080:28080
+      - 28081:28081
+      - 28082:28082
+      - 38081:38081
+    volumes:
+      - './data/wallet-1:/monero/wallet'
+      - './scripts/entrypoint.mining.sh:/entrypoint.sh'
+      - './.monero/logs:/monero/logs'
+      - './.monero/blockchain/mining:/monero/blockchain'
 
-  nice-monero-node-2:
-    container_name: monero-node-2
-    build:
-      context: ./docker
-      dockerfile: Dockerfile.monero
-#/opt/monero/monerod --testnet  --no-igd --hide-my-port --testnet-data-dir ~/testnet/node --p2p-bind-ip 127.0.0.1 --log-level 0 --add-exclusive-node 127.0.0.1:38080 --add-exclusive-node 127.0.0.1:48080
-    command: ['./monerod', '--testnet']
+    command:
+      - '/bin/bash'
+    tty: true
+
+# ADD NETWORK
+
