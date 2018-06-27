@@ -36,6 +36,9 @@ ps: ## Containers status
 logs: ## Containers logs
 	$(PREFIX) docker-compose logs -f
 
+monero-logs:
+	@tail -f .monero/blockchain/mining/testnet/bitmonero.log
+
 clean: ## remove containers
 	@docker rm $(CONTAINER_POOL_NAME)
 
