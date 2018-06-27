@@ -13,7 +13,7 @@ STAGE=develop
 PREFIX=cd docker/ &&
 
 # API
-CONTAINER_POOL_NAME=nice-pool -$(STAGE)-$(TAG)
+CONTAINER_POOL_NAME=nice-pool
 
 #-----------------------------------------------
 # Phony targets
@@ -43,7 +43,7 @@ c: ## execute a shell into api container
 	@docker exec -ti $(CONTAINER_POOL_NAME) /bin/bash
 
 relaunch: ## stop, clean, build-image up ps
-	$(MAKE) stop clean build-image up ps
+	$(MAKE) stop clean build-images up ps
 
 #-----------------------------------------------
 # Image
