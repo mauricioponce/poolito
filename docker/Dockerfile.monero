@@ -11,3 +11,5 @@ RUN wget -q https://downloads.getmonero.org/cli/monero-linux-x64-${monero_versio
     mv monero-${monero_version}/* /usr/bin && \
     rm monero-linux-x64-${monero_version}.tar.bz2 && \
     apt-get autoremove -y
+
+ENTRYPOINT ["/entrypoint.sh"]
